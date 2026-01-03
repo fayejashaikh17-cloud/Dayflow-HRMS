@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dayflow HRMS - Payroll</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>Dayflow HRMS</h2>
+        </div>
+        <div class="nav-links">
+            <a href="#" id="dashboard-link">Dashboard</a>
+        </div>
+        <div class="nav-user">
+            <span id="user-name">User</span>
+            <button class="btn btn-secondary" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Payroll Management</h1>
+
+        <div id="error-message" class="error-message" style="display: none;"></div>
+        <div id="success-message" class="success-message" style="display: none;"></div>
+
+        <div id="admin-controls" style="display: none;">
+            <div class="admin-panel">
+                <h2>Generate Payroll</h2>
+                <form id="generate-payroll-form" class="form-inline">
+                    <div class="form-group">
+                        <label>Employee</label>
+                        <select id="employee-select" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Month</label>
+                        <select id="month-select" required>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Year</label>
+                        <input type="number" id="year-input" min="2020" max="2030" value="2024" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Generate Payroll</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="payroll-filters">
+            <div class="form-group">
+                <label>Filter by Month</label>
+                <select id="filter-month" onchange="loadPayroll()">
+                    <option value="">All Months</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Filter by Year</label>
+                <input type="number" id="filter-year" min="2020" max="2030" value="2024" onchange="loadPayroll()">
+            </div>
+        </div>
+
+        <div class="payroll-table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Month/Year</th>
+                        <th>Employee</th>
+                        <th>Base Salary</th>
+                        <th>Allowances</th>
+                        <th>Deductions</th>
+                        <th>Tax</th>
+                        <th>Net Salary</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="payroll-tbody">
+                    <tr>
+                        <td colspan="8">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        checkAuth();
+        loadPayroll();
+        if (currentUser && (currentUser.role === 'admin' || currentUser.role === 'hr')) {
+            document.getElementById('admin-controls').style.display = 'block';
+            loadEmployeesForPayroll();
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dayflow HRMS - Attendance</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>Dayflow HRMS</h2>
+        </div>
+        <div class="nav-links">
+            <a href="#" id="dashboard-link">Dashboard</a>
+        </div>
+        <div class="nav-user">
+            <span id="user-name">User</span>
+            <button class="btn btn-secondary" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Attendance Management</h1>
+
+        <div id="error-message" class="error-message" style="display: none;"></div>
+        <div id="success-message" class="success-message" style="display: none;"></div>
+
+        <div class="attendance-controls">
+            <div class="check-in-out">
+                <button id="checkin-btn" class="btn btn-success" onclick="checkIn()">Check In</button>
+                <button id="checkout-btn" class="btn btn-danger" onclick="checkOut()" style="display: none;">Check Out</button>
+            </div>
+            <div class="period-selector">
+                <label>View Period:</label>
+                <select id="period-select" onchange="loadAttendance()">
+                    <option value="week">Last 7 Days</option>
+                    <option value="month">Last 30 Days</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="today-status" class="today-status">
+            <h3>Today's Status</h3>
+            <div id="today-info"></div>
+        </div>
+
+        <div class="attendance-table-container">
+            <h3>Attendance Records</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Working Hours</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="attendance-tbody">
+                    <tr>
+                        <td colspan="5">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        checkAuth();
+        loadAttendance();
+        loadTodayStatus();
+    </script>
+</body>
+</html>
+

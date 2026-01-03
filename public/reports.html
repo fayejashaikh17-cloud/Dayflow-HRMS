@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dayflow HRMS - Reports</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>Dayflow HRMS</h2>
+        </div>
+        <div class="nav-links">
+            <a href="admin-dashboard.html">Dashboard</a>
+        </div>
+        <div class="nav-user">
+            <span id="user-name">Admin</span>
+            <button class="btn btn-secondary" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Analytics & Reports</h1>
+
+        <div class="reports-filters">
+            <div class="form-group">
+                <label>Year</label>
+                <input type="number" id="report-year" min="2020" max="2030" value="2024" onchange="loadReports()">
+            </div>
+        </div>
+
+        <div class="reports-stats">
+            <div class="stat-card">
+                <h3 id="total-payroll">-</h3>
+                <p>Total Payroll</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="avg-salary">-</h3>
+                <p>Average Salary</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="employee-count">-</h3>
+                <p>Employees</p>
+            </div>
+        </div>
+
+        <div class="monthly-breakdown">
+            <h2>Monthly Payroll Breakdown</h2>
+            <div id="monthly-chart" class="monthly-chart">
+                <p>Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        checkAuth();
+        loadReports();
+    </script>
+</body>
+</html>
+

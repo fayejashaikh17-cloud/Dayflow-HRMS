@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dayflow HRMS - Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>Dayflow HRMS</h2>
+        </div>
+        <div class="nav-user">
+            <span id="user-name">Admin</span>
+            <button class="btn btn-secondary" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Admin / HR Dashboard</h1>
+        
+        <div class="dashboard-cards">
+            <div class="card" onclick="navigateTo('employees.html')">
+                <div class="card-icon">👥</div>
+                <h3>Employees</h3>
+                <p>Manage employees</p>
+            </div>
+            <div class="card" onclick="navigateTo('attendance.html')">
+                <div class="card-icon">📅</div>
+                <h3>Attendance</h3>
+                <p>View all attendance</p>
+            </div>
+            <div class="card" onclick="navigateTo('leave.html')">
+                <div class="card-icon">✅</div>
+                <h3>Leave Approvals</h3>
+                <p>Approve leave requests</p>
+            </div>
+            <div class="card" onclick="navigateTo('payroll.html')">
+                <div class="card-icon">💰</div>
+                <h3>Payroll</h3>
+                <p>Manage payroll</p>
+            </div>
+            <div class="card" onclick="navigateTo('reports.html')">
+                <div class="card-icon">📊</div>
+                <h3>Reports</h3>
+                <p>Analytics & reports</p>
+            </div>
+        </div>
+
+        <div class="admin-stats">
+            <div class="stat-card">
+                <h3 id="total-employees">-</h3>
+                <p>Total Employees</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="pending-leaves">-</h3>
+                <p>Pending Leaves</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="today-attendance">-</h3>
+                <p>Today's Attendance</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        checkAuth();
+        loadAdminDashboard();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dayflow HRMS - Employee Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h2>Dayflow HRMS</h2>
+        </div>
+        <div class="nav-user">
+            <span id="user-name">Employee</span>
+            <button class="btn btn-secondary" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Employee Dashboard</h1>
+        
+        <div class="dashboard-cards">
+            <div class="card" onclick="navigateTo('profile.html')">
+                <div class="card-icon">👤</div>
+                <h3>Profile</h3>
+                <p>View and edit your profile</p>
+            </div>
+            <div class="card" onclick="navigateTo('attendance.html')">
+                <div class="card-icon">📅</div>
+                <h3>Attendance</h3>
+                <p>Track your attendance</p>
+            </div>
+            <div class="card" onclick="navigateTo('leave.html')">
+                <div class="card-icon">🏖️</div>
+                <h3>Leave Requests</h3>
+                <p>Apply for leave</p>
+            </div>
+            <div class="card" onclick="navigateTo('payroll.html')">
+                <div class="card-icon">💰</div>
+                <h3>Payroll</h3>
+                <p>View salary details</p>
+            </div>
+        </div>
+
+        <div class="recent-activity">
+            <h2>Recent Activity</h2>
+            <div id="activity-list" class="activity-list">
+                <p>Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        checkAuth();
+        loadEmployeeDashboard();
+    </script>
+</body>
+</html>
+
